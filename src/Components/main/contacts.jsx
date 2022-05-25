@@ -8,7 +8,7 @@ const Contacts = () => {
     <Wrapper direction="row" justify="center" align="center">
       <Sidebar />
       <Wrapper justify="center" align="center" height="70vh" width="80%" margin="100px 0 0 20%">
-        <Label fontSize="50px">This page is about our contacts</Label>
+        <Label fontSize="50px">Catland, Venus</Label>
       </Wrapper>
     </Wrapper>
   );

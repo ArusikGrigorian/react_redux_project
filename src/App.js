@@ -1,15 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import styled from "styled-components";
+import { StyledApp } from "./Components/abstract/styledComponents/app.styled";
 import Navbar from "./Components/main/navbar";
 import Home from "./Components/main/home";
 import About from "./Components/main/about";
 import Contacts from "./Components/main/contacts";
-
-const StyledApp = styled.div`
-  width: 100%;
-  margin: 0 auto;
-`;
 
 function App() {
   return (
