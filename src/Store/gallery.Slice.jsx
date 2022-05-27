@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const fetchPictures = createAsyncThunk(
-  "category/fetchPictures",
+  "gallery/fetchPictures",
   async (url, { rejectWithValue }) => {
     return await axios
       .get(url)
       .then((response) => response.data)
-      .catch((error) => rejectWithValue(error.message));
+      .catch(() => rejectWithValue("Oops, something went wrong :/"));
   }
 );
 
@@ -15,14 +15,14 @@ const gallerySlice = createSlice({
   name: "gallery",
   initialState: {
     list: [],
+    limit: 10,
     loading: false,
     error: null,
-    limit: 10,
   },
 
   reducers: {
-    addPictures(state, action) {
-      state.list.push(action.payload);
+    addLimit(state) {
+      state.limit += 10;
     },
   },
 
@@ -32,19 +32,17 @@ const gallerySlice = createSlice({
     },
     [fetchPictures.fulfilled]: (state, action) => {
       state.loading = false;
+      state.error = null;
       state.list = action.payload;
     },
-    [fetchPictures.pending]: (state, action) => {
+    [fetchPictures.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
   },
 });
 
-const { addPictures } = gallerySlice.actions;
-export { fetchPictures, addPictures };
-export default gallerySlice.reducer;
+const { addLimit } = gallerySlice.actions;
 
-//initial state
-//render selected picture
-//if there is need load more
+export { fetchPictures, addLimit };
+export default gallerySlice.reducer;

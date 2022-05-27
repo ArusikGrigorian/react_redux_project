@@ -3,7 +3,7 @@ import Wrapper from "../common/wrapper";
 import Logo from "./logo";
 import Menu from "./menu";
 
-const Sidebar = (props) => {
+const Sidebar = () => {
   return (
     <Wrapper
       direction="column"

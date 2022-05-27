@@ -19,13 +19,16 @@ const Section = () => {
   const error = useSelector((state) => state.category.error);
   const selected = useSelector((state) => state.category.selectedCategory);
   const selectedCategory = categories.find((category) => category.id === selected);
+  const endpoint = "categories";
+  const url = `${BASE_URL}${endpoint}`;
 
   useEffect(() => {
-    const endpoint = "categories";
-    dispatch(fetchCategories(`${BASE_URL}${endpoint}`));
-  }, [dispatch]);
+    dispatch(fetchCategories(url));
+  }, [dispatch, url]);
 
-  return error ? (
+  return loading ? (
+    <Label fontWeight="bold">Loading...</Label>
+  ) : error ? (
     <Label fontWeight="bold">{error}</Label>
   ) : (
     <>
@@ -34,7 +37,7 @@ const Section = () => {
           <FaCat />
         </Icon>
         <Label fontSize="20px" fontWeight="bold">
-          {loading ? "EGORY..." : selected ? selectedCategory.name.toUpperCase() : "EGORY"}
+          {selected ? selectedCategory.name.toUpperCase() : "EGORY"}
         </Label>
       </CategoryHeaderWrapper>
       <CategoryListWrapper>

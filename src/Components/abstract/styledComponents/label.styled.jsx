@@ -5,6 +5,7 @@ const StyledLabel = styled.span`
   font-size: ${(props) => props.fontSize || "16px"};
   font-weight: ${(props) => props.fontWeight || "regular"};
   color: ${(props) => props.color || props.theme.colors.quaternary};
+  margin: ${(props) => props.margin || "unset"};
 `;
 
 export { StyledLabel };

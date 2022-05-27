@@ -7,7 +7,7 @@ const fetchCategories = createAsyncThunk(
     return await axios
       .get(url)
       .then((response) => response.data)
-      .catch(() => rejectWithValue("Oops, just don't panic ;)"));
+      .catch(() => rejectWithValue("Oops, don't panic ;)"));
   }
 );
 
@@ -29,10 +29,10 @@ const categorySlice = createSlice({
   extraReducers: {
     [fetchCategories.pending]: (state) => {
       state.loading = true;
-      state.error = null;
     },
     [fetchCategories.fulfilled]: (state, action) => {
       state.loading = false;
+      state.error = null;
       state.list = action.payload;
     },
     [fetchCategories.rejected]: (state, action) => {

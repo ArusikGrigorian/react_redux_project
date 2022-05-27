@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "../menu/sidebar";
 import Content from "../gallery/content";
 
-const Home = (props) => {
+const Home = () => {
   return (
     <>
       <Sidebar />
