@@ -14,7 +14,7 @@ import { FaCat } from "react-icons/fa";
 
 const Section = () => {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.category.list);
+  let categories = useSelector((state) => state.category.list);
   const loading = useSelector((state) => state.category.loading);
   const error = useSelector((state) => state.category.error);
   const selected = useSelector((state) => state.category.selectedCategory);

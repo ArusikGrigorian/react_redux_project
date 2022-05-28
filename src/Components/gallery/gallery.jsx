@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPictures, addLimit } from "../../Store/gallery.Slice";
+import { fetchPictures } from "../../Store/gallery.Slice";
+import { addLimit } from "../../Store/categorySlice";
 import BASE_URL from "../abstract/api";
 import { StyledGallery } from "../abstract/styledComponents/gallery.styled";
 import Picture from "./picture";
@@ -15,7 +16,7 @@ const Gallery = () => {
   const loading = useSelector((state) => state.gallery.loading);
   const error = useSelector((state) => state.gallery.error);
   const selectedCategoryId = useSelector((state) => state.category.selectedCategory) || 1;
-  let limit = useSelector((state) => state.gallery.limit);
+  const limit = useSelector((state) => state.category.limit);
   const endpoint = `images/search?limit=${limit}&category_ids=${selectedCategoryId}`;
   const url = `${BASE_URL}${endpoint}`;
 

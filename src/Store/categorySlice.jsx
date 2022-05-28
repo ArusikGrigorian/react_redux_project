@@ -16,25 +16,34 @@ const categorySlice = createSlice({
   initialState: {
     list: [],
     selectedCategory: null,
+    limit: 10,
     loading: false,
     error: null,
   },
 
   reducers: {
     selectCategory(state, action) {
+      state.limit = 10;
       state.selectedCategory = action.payload.id;
+    },
+
+    addLimit(state) {
+      state.limit += 10;
     },
   },
 
   extraReducers: {
+    //pending
     [fetchCategories.pending]: (state) => {
       state.loading = true;
     },
+    //success
     [fetchCategories.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = null;
       state.list = action.payload;
     },
+    //error
     [fetchCategories.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
@@ -42,7 +51,7 @@ const categorySlice = createSlice({
   },
 });
 
-const { selectCategory } = categorySlice.actions;
+const { selectCategory, addLimit } = categorySlice.actions;
 
-export { fetchCategories, selectCategory };
+export { fetchCategories, selectCategory, addLimit };
 export default categorySlice.reducer;

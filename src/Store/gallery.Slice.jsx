@@ -15,26 +15,22 @@ const gallerySlice = createSlice({
   name: "gallery",
   initialState: {
     list: [],
-    limit: 10,
     loading: false,
     error: null,
   },
 
-  reducers: {
-    addLimit(state) {
-      state.limit += 10;
-    },
-  },
-
   extraReducers: {
+    //pending
     [fetchPictures.pending]: (state) => {
       state.loading = true;
     },
+    //success
     [fetchPictures.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = null;
       state.list = action.payload;
     },
+    //error
     [fetchPictures.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
@@ -42,7 +38,5 @@ const gallerySlice = createSlice({
   },
 });
 
-const { addLimit } = gallerySlice.actions;
-
-export { fetchPictures, addLimit };
+export { fetchPictures };
 export default gallerySlice.reducer;
